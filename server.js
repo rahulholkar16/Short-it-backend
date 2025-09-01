@@ -14,7 +14,7 @@ app.use(cors({
     origin: [
         "http://localhost:5173",  // Vite frontend
         "http://localhost:3000",
-        "https://short-it-one.vercel.app"   // CRA frontend
+        "https://short-it-one.vercel.app/"   // CRA frontend
     ],
     credentials: true, // allow cookies / auth headers
 }));
