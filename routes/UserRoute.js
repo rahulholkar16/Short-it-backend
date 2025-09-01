@@ -58,7 +58,7 @@ route.post('/login', async (req, res) => {
         const token = jwt.sign({ id: user?._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
         res.cookie("token", token, {
             httpOnly: false,
-            // secure: true,         // Uncomment in Production(HTTPS)
+            secure: true,         // Uncomment in Production(HTTPS)
             maxAge: 24 * 60 * 60 * 1000
         });
 
