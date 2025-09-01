@@ -67,7 +67,7 @@ route.post('/login', async (req, res) => {
 
         return res.status(200).json({ msg: "Loging successfully!", token: token });
     } catch (error) {
-        return res.status(500).json({ msg: "Error in Login: ", error: e.message });
+        return res.status(500).json({ msg: "Error in Login: ", error: error.message });
     }
 })
 
