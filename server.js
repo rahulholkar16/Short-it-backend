@@ -1,25 +1,30 @@
 import route from "./routes/UserRoute.js";
-import cors from 'cors'
+import cors from 'cors';
 import { express, mongoose, cookieParser } from "./utils/ImortExport.js";
-// import serverless from 'serverless-http';
 
 // DB Config
 mongoose.connect(process.env.DB_URL)
     .then(() => console.log("✅ MongoDB connected"))
     .catch(err => console.error("❌ MongoDB error:", err.message));
 
-const PORT = process.env.PORT || 3000;
 const app = express();
 
-app.use(cors());
+// ✅ CORS setup
+app.use(cors({
+    origin: [
+        "http://localhost:5173",  // Vite frontend
+        "http://localhost:3000"   // CRA frontend
+    ],
+    credentials: true, // allow cookies / auth headers
+}));
+
 app.use(express.json());
 app.use(cookieParser());
 
-// ----- Route -----
-// app.get('/', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'client', 'index.html'));
-// })
-
+// ----- Routes -----
 app.use('/api/v1', route);
 app.use('/url', route);
-app.listen(process.env.PORT);
+
+app.listen(process.env.PORT || 3000, () => {
+    console.log("🚀 Server running on port", process.env.PORT || 3000);
+});
