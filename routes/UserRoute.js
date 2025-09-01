@@ -59,7 +59,8 @@ route.post('/login', async (req, res) => {
         res.cookie("token", token, {
             httpOnly: false,
             secure: true,         // Uncomment in Production(HTTPS)
-            maxAge: 24 * 60 * 60 * 1000
+            maxAge: 24 * 60 * 60 * 1000,
+            sameSite: "None",
         });
 
         return res.status(200).json({ msg: "Loging successfully!", token: token });
