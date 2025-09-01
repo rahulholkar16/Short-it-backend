@@ -81,6 +81,10 @@ route.post('/logout', (req, res) => {
     return res.status(200).json({ success: true, msg: "Logged out successfully!" });
 })
 
+route.post('/isLog', auth, (req, res) => {
+    return res.status(200).json({ success: true, msg: "user loggedin!" });
+})
+
 route.get('/dashboard', auth, (req, res) => {
     try {
         res.status(200).json({
