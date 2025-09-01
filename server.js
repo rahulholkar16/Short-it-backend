@@ -13,7 +13,7 @@ const app = express();
 app.use(cors({
     origin: [
         "http://localhost:5173",  // Vite frontend
-        "https://shotit-one.vercel.app"   // CRA frontend
+        "https://shortit-tan.vercel.app"   // CRA frontend
     ],
     credentials: true, // allow cookies / auth headers
 }));
