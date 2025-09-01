@@ -61,6 +61,7 @@ route.post('/login', async (req, res) => {
             secure: true,         // Uncomment in Production(HTTPS)
             maxAge: 24 * 60 * 60 * 1000,
             sameSite: "None",
+            path: "/"
         });
 
         return res.status(200).json({ msg: "Loging successfully!", token: token });
