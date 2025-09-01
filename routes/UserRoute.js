@@ -1,3 +1,4 @@
+import { success } from "zod";
 import { bcrypt, express, nanoid, UrlModel, UserModel, auth, jwt, path, fileURLToPath } from "../utils/ImortExport.js";
 import { authValidationSchema } from "../Validation/authValidation.js";
 import { UrlValidation } from "../Validation/UrlValidation.js";
@@ -57,7 +58,7 @@ route.post('/login', async (req, res) => {
 
         const token = jwt.sign({ id: user?._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
         res.cookie("token", token, {
-            httpOnly: false,
+            httpOnly: true,
             secure: true,         // Uncomment in Production(HTTPS)
             maxAge: 24 * 60 * 60 * 1000,
             sameSite: "None",
@@ -68,6 +69,16 @@ route.post('/login', async (req, res) => {
     } catch (error) {
         return res.status(500).json({ msg: "Error in Login: ", error: e.message });
     }
+})
+
+route.post('/logout', (req, res) => {
+    res.clearCookie("token", {
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
+        path: '/'
+    });
+    return res.status(200).json({ success: true, msg: "Logged out successfully!" });
 })
 
 route.get('/dashboard', auth, (req, res) => {
