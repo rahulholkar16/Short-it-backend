@@ -22,6 +22,11 @@ app.use(express.json());
 app.use(cookieParser());
 
 // ----- Routes -----
+app.get('/', (req, res) => {
+    res.json({
+        msg: "Welcome!!"
+    })
+});
 app.use('/api/v1', route);
 app.use('/url', route);
 
