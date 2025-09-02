@@ -1,19 +1,18 @@
-import { mongoose } from "./utils/ImortExport.js";
+import mongoose from "mongoose";
 
-const Schema = mongoose.Schema;
+let isConnected = false;
 
-const UserSchema = new Schema({
-    "name": { type: String, required: true },
-    "email": { type: String, unique: true, required: true },
-    "password": { type: String, required: true },
-    "userHistory": [{ type: Schema.Types.ObjectId, ref: "url" }]
-})
+export const connectDB = async () => {
+    if (isConnected) return;
 
-const UrlSchema = new Schema({
-    "origenalUrl": { type: String,  required: true },
-    "sortUrl": { type: String, unique: true },
-    "user": { type: Schema.Types.ObjectId, ref: "user" }
-}, { timestamps: true });
-
-export  const UserModel = mongoose.model("user", UserSchema);
-export const UrlModel = mongoose.model("url", UrlSchema);
+    try {
+        const db = await mongoose.connect(process.env.DB_URL, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+        isConnected = db.connections[0].readyState === 1;
+        console.log("✅ MongoDB connected");
+    } catch (err) {
+        console.error("❌ MongoDB error:", err.message);
+    }
+};

@@ -1,11 +1,8 @@
 import route from "./routes/UserRoute.js";
 import cors from 'cors';
-import { express, mongoose, cookieParser } from "./utils/ImortExport.js";
+import { connectDB } from "./utils/db.js";
+import { express, cookieParser } from "./utils/ImortExport.js";
 
-// DB Config
-mongoose.connect(process.env.DB_URL)
-    .then(() => console.log("✅ MongoDB connected"))
-    .catch(err => console.error("❌ MongoDB error:", err.message));
 
 const app = express();
 
@@ -20,6 +17,9 @@ app.use(cors({
 
 app.use(express.json());
 app.use(cookieParser());
+
+// DB config
+connectDB();
 
 // ----- Routes -----
 app.get('/', (req, res) => {
