@@ -1,6 +1,6 @@
 import route from "./routes/UserRoute.js";
 import cors from 'cors';
-import { connectDB } from "db.js";
+import { connectDB } from "./dbConfig.js"
 import { express, cookieParser } from "./utils/ImortExport.js";
 
 
