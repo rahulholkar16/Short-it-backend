@@ -30,3 +30,7 @@ app.get('/', (req, res) => {
 });
 app.use('/api/v1', route);
 app.use('/url', route);
+
+app.listen(process.env.PORT || 3000, () => {
+    console.log("🚀 Server running on port", process.env.PORT || 3000);
+});
