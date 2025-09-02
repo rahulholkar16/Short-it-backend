@@ -3,6 +3,8 @@ import cors from 'cors';
 import { connectDB } from "./dbConfig.js"
 import { express, cookieParser } from "./utils/ImortExport.js";
 
+// DB config
+connectDB();
 
 const app = express();
 
@@ -18,8 +20,7 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
-// DB config
-connectDB();
+
 
 // ----- Routes -----
 app.get('/', (req, res) => {
