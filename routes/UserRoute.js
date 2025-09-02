@@ -41,7 +41,7 @@ route.post('/signup', async (req, res) => {
             msg: "User added Successfully!"
         });
     } catch (error) {
-        return res.status(500).json({ msg: "Error creating user", error: e.message });
+        return res.status(500).json({ msg: "Error creating user", error: error.message });
     }
 });
 
