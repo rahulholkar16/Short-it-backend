@@ -1,4 +1,4 @@
-import { mongoose } from "./utils/ImortExport.js";
+import { mongoose } from "../utils/ImortExport.js";
 
 const Schema = mongoose.Schema;
 
@@ -9,4 +9,4 @@ const UserSchema = new Schema({
     "userHistory": [{ type: Schema.Types.ObjectId, ref: "url" }]
 });
 
-export  const UserModel = mongoose.model("user", UserSchema);
+export const UserModel = mongoose.model("user", UserSchema);

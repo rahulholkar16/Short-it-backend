@@ -1,4 +1,4 @@
-import { mongoose } from "./utils/ImortExport.js";
+import { mongoose } from "../utils/ImortExport.js";
 
 const Schema = mongoose.Schema;
 
